@@ -1,0 +1,49 @@
+<%= form_with(model: production) do |form| %>
+  <% if production.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(production.errors.count, "error") %> prohibited this production from being saved:</h2>
+
+      <ul>
+        <% production.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :ref %>
+    <%= form.text_field :ref %>
+  </div>
+
+  <div class="field">
+    <%= form.label :tracer %>
+    <%= form.text_field :tracer %>
+  </div>
+
+  <div class="field">
+    <%= form.label :calibration_value %>
+    <%= form.text_field :calibration_value %>
+  </div>
+
+  <div class="field">
+    <%= form.label :calibration_unit %>
+    <%= form.text_field :calibration_unit %>
+  </div>
+
+  <div class="field">
+    <%= form.label :calibration_time %>
+    <%= form.text_field :calibration_time %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_field :description %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+
+<hr>
