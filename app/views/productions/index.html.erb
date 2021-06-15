@@ -1,49 +1,76 @@
 <p id="notice"><%= notice %></p>
 
-<div class="jumbotron jumbotron-fluid text-center">
-  <h1>My First Bootstrap Page</h1>
-  <p>Resize this responsive page to see the effect!</p> 
-</div>
+<h1>Productions</h1>
 
 <div class="container">
-  <h1>Productions</h1>
+  <h2>Hoverable Dark Table</h2>
+  <p>The .table-hover class adds a hover effect (grey background color) on table rows:</p>            
+  <table class="table table-dark table-hover">
+    <thead>
+      <tr>
+        <th>
+          <a href="<%= productions_path(order: :ref) %>" 
+            class="btn <%= (@order == "ref") ? "btn-secondary" : "btn-dark" %> text-white" 
+            role="button">
+            Ref
+          </a>
+        </th>
+        
+        <th><a href="#" class="btn btn-dark text-white" role="button">Tracer</a></th>
+        <th><a href="#" class="btn btn-dark text-white" role="button">Calibration</a></th>
 
-  <div class="container">
-    <h2>Hoverable Dark Table</h2>
-    <p>The .table-hover class adds a hover effect (grey background color) on table rows:</p>            
-    <table class="table table-dark table-hover">
-      <thead>
+        <th>
+          <a href="<%= productions_path(order: :calibration_time) %>" 
+            class="btn <%= (@order == "calibration_time") ? "btn-secondary" : "btn-dark" %> text-white" 
+            role="button">
+            Time
+          </a>
+        </th>
+        
+        <th><a href="#" class="btn btn-dark text-white" role="button">Descr</a></th>
+        
+        <th colspan="3" style="text-align: right;">
+        
+          <% if @order != "created_at" %>
+            <a href="<%= productions_path(order: :created_at) %>" 
+              class="btn btn-secondary text-white" 
+              role="button">
+              X
+            </a>
+          <% end %>
+
+        </th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @productions.each do |production| %>
         <tr>
-          <th>Ref</th>
-          <th>Tracer</th>
-          <th>Calibration</th>
-          <th>Unit</th>
-          <th>Time</th>
-          <th>Descr</th>
-          <th colspan="3"></th>
+          <td>#<%= production.ref %></td>
+          <td><%= production.tracer.name %></td>
+          <td>
+            <%= production.calibration_value %>
+            <%= production.unit_to_string(production.calibration_unit) %>
+          </td>
+          
+          <td>
+            <%= production.calibration_time_for_human %>
+          </td>
+
+          <td><%= production.description %></td>
+          <td><%= link_to 'Show', production, class: "btn btn-light btn-sm" %></td>
+          <td><%= link_to 'Edit', edit_production_path(production), class: "btn btn-light btn-sm" %></td>
+          <td><%= link_to 'Destroy', production, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-light btn-sm" %></td>
         </tr>
-      </thead>
-
-      <tbody>
-        <% @productions.each do |production| %>
-          <tr>
-            <td><%= production.ref %></td>
-            <td><%= production.tracer %></td>
-            <td><%= production.calibration_value %></td>
-            <td><%= production.calibration_unit %></td>
-            <td><%= production.calibration_time %></td>
-            <td><%= production.description %></td>
-            <td><%= link_to 'Show', production, class: "btn btn-light btn-sm" %></td>
-            <td><%= link_to 'Edit', edit_production_path(production), class: "btn btn-light btn-sm" %></td>
-            <td><%= link_to 'Destroy', production, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-light btn-sm" %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-  </div>
-
-  <br>
-
-  <%= link_to 'New Production', new_production_path, class: "btn btn-light" %>
-
+      <% end %>
+    </tbody>
+  </table>
+  
+  <%= paginate @productions %>
+  
 </div>
+
+<br>
+
+<%= link_to 'New Production', new_production_path, class: "btn btn-light" %>
+

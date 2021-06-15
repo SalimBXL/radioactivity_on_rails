@@ -18,7 +18,16 @@
 
   <div class="field">
     <%= form.label :tracer %>
-    <%= form.text_field :tracer %>
+    <% @tracers = Tracer.order(:name) %>
+    <%= form.select :tracer_id, 
+        @tracers.map { |tracer| [tracer.name, tracer.id] },
+        {
+          selected: form.object.tracer_id || @tracers.first.id,
+          disabled: "",
+          prompt: 'Please select tracer'
+        },
+        { }
+    %>
   </div>
 
   <div class="field">
@@ -28,12 +37,21 @@
 
   <div class="field">
     <%= form.label :calibration_unit %>
-    <%= form.text_field :calibration_unit %>
+    <%= form.select :calibration_unit, 
+        Production::UNITS.map { |unit| [unit.first, unit.last] },
+        {
+          selected: form.object.calibration_unit || Production::UNITS.first,
+          disabled: "",
+          prompt: 'Please select unit'
+        },
+        { }
+    %>
+
   </div>
 
   <div class="field">
     <%= form.label :calibration_time %>
-    <%= form.text_field :calibration_time %>
+    <%= form.datetime_local_field :calibration_time %>
   </div>
 
   <div class="field">

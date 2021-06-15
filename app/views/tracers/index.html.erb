@@ -1,0 +1,38 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Tracers</h1>
+
+<div class="container">
+
+  <p>
+    Tracers list.
+  </p>
+
+  <table class="table table-dark table-hover">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Molecule</th>
+        <th>Halflife</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @tracers.each do |tracer| %>
+        <tr>
+          <td><%= tracer.name %></td>
+          <td><%= tracer.molecule %></td>
+          <td><%= tracer.halflife %></td>
+          <td><%= link_to 'Show', tracer, class: "btn btn-light btn-sm" %></td>
+          <td><%= link_to 'Edit', edit_tracer_path(tracer), class: "btn btn-light btn-sm" %></td>
+          <td><%= link_to 'Destroy', tracer, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-light btn-sm" %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<br>
+
+<%= link_to 'New Tracer', new_tracer_path, class: "btn btn-light" %>

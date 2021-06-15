@@ -1,0 +1,18 @@
+<p id="notice"><%= notice %></p>
+
+
+<h3><span class="badge badge-info"><%= @tracer.name %></span></h3>
+
+
+<p>
+  <strong>Molecule:</strong>
+  <%= @tracer.molecule %>
+</p>
+
+<p>
+  <strong>Halflife:</strong>
+  <%= @tracer.halflife %>
+</p>
+
+<%= link_to 'Edit', edit_tracer_path(@tracer), class: "btn btn-light" %>
+<%= link_to 'Back', tracers_path, class: "btn btn-light" %>

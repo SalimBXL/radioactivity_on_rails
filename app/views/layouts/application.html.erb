@@ -20,6 +20,16 @@
   </head>
 
   <body>
-    <%= yield %>
+
+    <div class="jumbotron jumbotron-fluid text-center">
+      <%= image_tag("radiation.jpg", height: "100") %>
+      <h1>Radioactivity On Rails</h1>
+      <p>ULB Erasme Cyclotron Biomedical</p>
+    </div>
+    
+
+    <div class="container">
+      <%= yield %>
+    </div>
   </body>
 </html>

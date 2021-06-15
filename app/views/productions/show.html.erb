@@ -7,24 +7,25 @@
     <strong>Ref:</strong> <%= @production.ref %>
   </h1>
 
-  <p>
-    <strong>Tracer:</strong>
-    <%= @production.tracer %>
-  </p>
+  <div class="d-flex justify-content-start">
+    <h3>
+    <span class="badge badge-info">
+      <%= @production.tracer.name %>
+    </span>
+  
+    <span class="badge badge-warning">
+      <%= @production.calibration_value %>
+      <%= @production.unit_to_string(@production.calibration_unit) %>
+    </span>
+  </h3>
 
-  <p>
-    <strong>Calibration Value:</strong>
-    <%= @production.calibration_value %>
-  </p>
+  </div>
 
-  <p>
-    <strong>Calibration Unit:</strong>
-    <%= @production.calibration_unit %>
-  </p>
+  
 
   <p>
     <strong>Calibration Time:</strong>
-    <%= @production.calibration_time %>
+    <%= @production.calibration_time_for_human %>
   </p>
 
   <p>

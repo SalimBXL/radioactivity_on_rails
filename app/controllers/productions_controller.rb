@@ -1,9 +1,15 @@
 class ProductionsController < ApplicationController
   before_action :set_production, only: %i[ show edit update destroy ]
+  before_action :get_tracers, only: %i[ new edit ]
 
   # GET /productions or /productions.json
   def index
-    @productions = Production.all
+    if params[:order]
+      @order = params[:order]
+    else 
+      @order = :created_at
+    end
+    @productions = Production.order(@order).page(params[:page])
   end
 
   # GET /productions/1 or /productions/1.json
@@ -57,6 +63,11 @@ class ProductionsController < ApplicationController
   end
 
   private
+
+    def get_tracers
+      @tracers = Tracer.order(:name)
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_production
       @production = Production.find(params[:id])
@@ -64,6 +75,6 @@ class ProductionsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def production_params
-      params.require(:production).permit(:ref, :tracer, :calibration_time, :calibration_value, :calibration_unit, :description)
+      params.require(:production).permit(:ref, :tracer_id, :calibration_time, :calibration_value, :calibration_unit, :description)
     end
 end

@@ -1,0 +1,34 @@
+<%= form_with(model: tracer) do |form| %>
+  <% if tracer.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(tracer.errors.count, "error") %> prohibited this tracer from being saved:</h2>
+
+      <ul>
+        <% tracer.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :molecule %>
+    <%= form.text_field :molecule %>
+  </div>
+
+  <div class="field">
+    <%= form.label :halflife %>
+    <%= form.text_field :halflife %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+
+<hr>
