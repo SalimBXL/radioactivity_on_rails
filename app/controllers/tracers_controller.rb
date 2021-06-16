@@ -64,6 +64,6 @@ class TracersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def tracer_params
-      params.require(:tracer).permit(:name, :molecule, :halflife)
+      params.require(:tracer).permit(:name, :molecule, :halflife, :color)
     end
 end

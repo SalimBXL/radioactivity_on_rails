@@ -26,6 +26,21 @@
     <%= form.text_field :halflife %>
   </div>
 
+  <div class="field">
+    <% tracer.color = Tracer::COLORS.first[1] if !tracer.color %>
+    <%= form.label :color %>
+    <% Tracer::COLORS.map.each do |color| %>
+      <%= form.radio_button :color, color[1] %>
+      <span class="badge badge-<%= color[0] %>">
+        <%= form.label :color, color[1], :value => color[1] %>
+      </span>
+    <% end %>
+
+
+
+  </div>
+
+
   <div class="actions">
     <%= form.submit %>
   </div>

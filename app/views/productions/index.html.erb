@@ -3,68 +3,84 @@
 <h1>Productions</h1>
 
 <div class="container">
-  <h2>Hoverable Dark Table</h2>
-  <p>The .table-hover class adds a hover effect (grey background color) on table rows:</p>            
-  <table class="table table-dark table-hover">
-    <thead>
-      <tr>
-        <th>
-          <a href="<%= productions_path(order: :ref) %>" 
-            class="btn <%= (@order == "ref") ? "btn-secondary" : "btn-dark" %> text-white" 
-            role="button">
-            Ref
-          </a>
-        </th>
-        
-        <th><a href="#" class="btn btn-dark text-white" role="button">Tracer</a></th>
-        <th><a href="#" class="btn btn-dark text-white" role="button">Calibration</a></th>
-
-        <th>
-          <a href="<%= productions_path(order: :calibration_time) %>" 
-            class="btn <%= (@order == "calibration_time") ? "btn-secondary" : "btn-dark" %> text-white" 
-            role="button">
-            Time
-          </a>
-        </th>
-        
-        <th><a href="#" class="btn btn-dark text-white" role="button">Descr</a></th>
-        
-        <th colspan="3" style="text-align: right;">
-        
-          <% if @order != "created_at" %>
-            <a href="<%= productions_path(order: :created_at) %>" 
-              class="btn btn-secondary text-white" 
-              role="button">
-              X
-            </a>
-          <% end %>
-
-        </th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <% @productions.each do |production| %>
+  <h2> </h2>
+  <p> </p>
+ 
+  <div class="table-responsive">
+    <table class="table table-dark table-hover">
+      <thead>
         <tr>
-          <td>#<%= production.ref %></td>
-          <td><%= production.tracer.name %></td>
-          <td>
-            <%= production.calibration_value %>
-            <%= production.unit_to_string(production.calibration_unit) %>
-          </td>
           
-          <td>
-            <%= production.calibration_time_for_human %>
-          </td>
+          <th><a href="#" class="btn btn-dark text-white" role="button">Tracer</a></th>
 
-          <td><%= production.description %></td>
-          <td><%= link_to 'Show', production, class: "btn btn-light btn-sm" %></td>
-          <td><%= link_to 'Edit', edit_production_path(production), class: "btn btn-light btn-sm" %></td>
-          <td><%= link_to 'Destroy', production, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-light btn-sm" %></td>
+          <th>
+            <a href="<%= productions_path(order: :calibration_time) %>" 
+              class="btn <%= (@order == "calibration_time") ? "btn-secondary" : "btn-dark" %> text-white" 
+              role="button">
+              Calibration Time
+            </a>
+          </th>
+
+          <th><a href="#" class="btn btn-dark text-white" role="button">Measure</a></th>
+          
+          
+          <th><a href="#" class="btn btn-dark text-white" role="button">Activity</a></th>
+          
+          <th colspan="3" style="text-align: right;">
+          
+            <% if @order != "created_at" %>
+              <a href="<%= productions_path(order: :created_at) %>" 
+                class="btn btn-secondary text-white" 
+                role="button">
+                X
+              </a>
+            <% end %>
+
+          </th>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
+      </thead>
+
+      <tbody>
+        <% @productions.each do |production| %>
+          <tr class="<%= "table-secondary text-dark" if production.is_from_today? %>" >
+            
+            <td>
+              <h6>
+                <span class="badge badge-<%= Tracer::COLORS.key(production.tracer.color) %>">
+                  <%= production.tracer.name %>
+                </span>
+              </h6>
+            </td>
+            
+            <td>
+              <%= production.calibration_time_for_human %>
+            </td>
+
+            <td>
+              <%= production.calibration_value.truncate(3) %>
+              <%= production.unit_to_string(production.calibration_unit) %>
+            </td>
+
+            <td>
+              <% if production.is_from_today? %>
+                <small>
+                  (~<%= production.computed_activity.truncate(3) %> <%= production.unit_to_string(production.calibration_unit) %>)
+                </small>
+              <% end %>
+            </td>
+
+            <td>#<%= production.ref %></td>
+            
+            
+
+            <td><%= link_to 'Show', production, class: "btn btn-light btn-sm" %></td>
+            <td><%= link_to 'Edit', edit_production_path(production), class: "btn btn-light btn-sm" %></td>
+            <td><%= link_to 'Destroy', production, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-light btn-sm" %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
   
   <%= paginate @productions %>
   

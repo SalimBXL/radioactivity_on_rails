@@ -21,7 +21,11 @@
     <tbody>
       <% @tracers.each do |tracer| %>
         <tr>
-          <td><%= tracer.name %></td>
+          <td>
+            <span class="badge badge-<%= Tracer::COLORS.key(tracer.color) %>">
+              <h6><%= tracer.name %></h6>
+            </span>
+          </td>
           <td><%= tracer.molecule %></td>
           <td><%= tracer.halflife %></td>
           <td><%= link_to 'Show', tracer, class: "btn btn-light btn-sm" %></td>

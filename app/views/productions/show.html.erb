@@ -7,31 +7,61 @@
     <strong>Ref:</strong> <%= @production.ref %>
   </h1>
 
-  <div class="d-flex justify-content-start">
-    <h3>
-    <span class="badge badge-info">
-      <%= @production.tracer.name %>
-    </span>
   
-    <span class="badge badge-warning">
-      <%= @production.calibration_value %>
-      <%= @production.unit_to_string(@production.calibration_unit) %>
-    </span>
-  </h3>
+  
+  <!-- TRACER -->
+  <div class="row">
+    <div class="col-sm-2">Tracer : </div>
 
+    <div class="col-sm-1">
+      <span class="badge badge-<%= Tracer::COLORS.key(@production.tracer.color) %>">
+        <%= @production.tracer.name %>
+      </span>
+    </div>
+    
+    <div class="col-sm-2">
+      <kbd>
+        <%= @production.calibration_value.truncate(3) %>
+        <%= @production.unit_to_string(@production.calibration_unit) %>
+      </kbd>
+    </div>
+    <div class="col-sm-2">
+      <small>(<%= @production.calibration_time_for_human %>)</small>
+    </div>
   </div>
 
-  
+  <hr>
 
-  <p>
-    <strong>Calibration Time:</strong>
-    <%= @production.calibration_time_for_human %>
-  </p>
+  <% if @production.calibration_time.to_date.today? %>
+    <!-- ACTIVITY -->
+    <div class="row">
+      <div class="col-sm-2">Activity : </div>
+      <div class="col-sm-1">
+        <code>
+          <%= (@production.porcent_activity * 100).truncate(2) %> %
+        </code>
+      </div>
+      <div class="col-sm-2">
+        <kbd>
+          <%= @production.computed_activity.truncate(3) %>
+          <%= @production.unit_to_string(@production.calibration_unit) %>
+        </kbd>
+      </div>
+      <div class="col-sm-2"><small>(<%= @production.elapsed_time %> min)</small></div>
+    </div>
 
-  <p>
-    <strong>Description:</strong>
-    <%= @production.description %>
-  </p>
+    <hr>
+  <% end %>
+
+  <div class="row">
+    <div class="col-sm-2">Description :</div>
+    <div class="col-sm">
+      <blockquote class="font-italic">
+        <%= @production.description %>
+      </blockquote>
+    </div>
+  </div>
+
 
   <hr>
 

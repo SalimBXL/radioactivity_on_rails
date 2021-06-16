@@ -9,7 +9,7 @@ class ProductionsController < ApplicationController
     else 
       @order = :created_at
     end
-    @productions = Production.order(@order).page(params[:page])
+    @productions = Production.order(@order).reverse_order.page(params[:page])
   end
 
   # GET /productions/1 or /productions/1.json
