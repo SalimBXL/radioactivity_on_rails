@@ -23,11 +23,11 @@
 
           <th><a href="#" class="btn btn-dark text-white" role="button">Measure</a></th>
           
-          
           <th><a href="#" class="btn btn-dark text-white" role="button">Activity</a></th>
+
+          <th><a href="#" class="btn btn-dark text-white" role="button">Client</a></th>
           
           <th colspan="3" style="text-align: right;">
-          
             <% if @order != "created_at" %>
               <a href="<%= productions_path(order: :created_at) %>" 
                 class="btn btn-secondary text-white" 
@@ -35,7 +35,6 @@
                 X
               </a>
             <% end %>
-
           </th>
         </tr>
       </thead>
@@ -69,7 +68,11 @@
               <% end %>
             </td>
 
-            <td>#<%= production.ref %></td>
+            <td>
+              <%= production.client ? production.client.name : "" %>
+              
+              <small>(#<%= production.ref %>)</small>
+            </td>
             
             
 

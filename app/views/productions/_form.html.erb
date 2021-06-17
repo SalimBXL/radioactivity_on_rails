@@ -59,6 +59,20 @@
     <%= form.text_field :description %>
   </div>
 
+  <div class="field">
+    <%= form.label :client %>
+    <% @clients = Client.order(:name) %>
+    <%= form.select :client_id, 
+        @clients.map { |client| [client.name, client.id] },
+        {
+          selected: form.object.client_id || @clients.find(1).id,
+          disabled: "",
+          prompt: 'Please select client'
+        },
+        { }
+    %>
+  </div>
+
   <div class="actions">
     <%= form.submit %>
   </div>

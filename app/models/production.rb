@@ -1,6 +1,7 @@
 class Production < ApplicationRecord
 
     belongs_to :tracer
+    belongs_to :client
     paginates_per 10
 
     UNITS = {

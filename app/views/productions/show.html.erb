@@ -57,7 +57,16 @@
     <div class="col-sm-2">Description :</div>
     <div class="col-sm">
       <blockquote class="font-italic">
-        <%= @production.description %>
+        <%= @production.description ? @production.description :  "" %>
+      </blockquote>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-2">Client :</div>
+    <div class="col-sm">
+      <blockquote class="font-italic">
+        <%= @production.client ? @production.client.name : "" %>
       </blockquote>
     </div>
   </div>
