@@ -1,0 +1,44 @@
+<tr class="<%= "table-secondary text-dark" if production.is_from_today? %>" >
+
+    <td>
+        <h6>
+        <span class="badge badge-<%= Tracer::COLORS.key(production.tracer.color) %>">
+            <%= production.tracer.name %>
+        </span>
+        </h6>
+    </td>
+    
+    <td><%= production.calibration_time_for_human %></td>
+
+    <td>
+        <%= production.calibration_value.truncate(3) %>
+        <%= production.unit_to_string(production.calibration_unit) %>
+    </td>
+
+    <td>
+        <% if production.is_from_today? %>
+        <small>
+            (~<%= production.computed_activity.truncate(3) %> <%= production.unit_to_string(production.calibration_unit) %>)
+        </small>
+        <% end %>
+    </td>
+
+    <td>
+        <% if production.client %>
+        <% if production.client.id != 1 %>
+            <span class="badge badge-secondary">
+            <%= production.client.name %>
+            </span>
+        <% end %>
+        <% end %>
+    </td>
+        
+    <td><small>(#<%= production.ref %>)</small></td>
+    
+    <td><%= link_to 'Show', production, class: "btn btn-light btn-sm" %></td>
+    
+    <td><%= link_to 'Edit', edit_production_path(production), class: "btn btn-light btn-sm" %></td>
+    
+    <td><%= link_to 'Destroy', production, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-light btn-sm" %></td>
+
+</tr>
