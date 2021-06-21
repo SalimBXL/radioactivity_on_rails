@@ -1,5 +1,15 @@
 class Tracer < ApplicationRecord
+
+    validates :name, presence: true
+    validates :name, uniqueness: true
+
+    validates :molecule, presence: true
+
+    validates :halflife, presence: true
+    validates :halflife, numericality: true
+
     has_many :productions, dependent: :destroy
+    validates_associated :productions
 
     COLORS = {
         dark: "default",

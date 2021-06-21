@@ -1,7 +1,24 @@
 class Production < ApplicationRecord
 
+    validates :ref, presence: true
+    validates :ref, uniqueness: true
+    
+    validates :tracer_id, presence: true
+    validates :tracer_id, numericality: { only_integer: true }
+
+    validates :calibration_time, presence: true
+
+    validates :calibration_value, presence: true
+    validates :calibration_value, numericality: true
+    
+    validates :calibration_unit, presence: true
+    validates :calibration_unit, numericality: { only_integer: true }
+
+    validates :client_id, numericality: { only_integer: true }
+    
     belongs_to :tracer
     belongs_to :client
+
     paginates_per 10
 
     UNITS = {
