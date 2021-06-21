@@ -72,9 +72,10 @@
   </div>
 
 
-  <hr>
-
-  <%= link_to 'Edit', edit_production_path(@production), class: "btn btn-light" %>
-  <%= link_to 'Back', productions_path, class: "btn btn-light"%>
+  <% if isRefShow %>
+    <hr>
+    <%= link_to 'Edit', edit_production_path(@production), class: "btn btn-light" %>
+    <%= link_to 'Back', productions_path, class: "btn btn-light"%>
+  <% end %>
 
 </div>

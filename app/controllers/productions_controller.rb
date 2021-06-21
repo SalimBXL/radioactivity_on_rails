@@ -4,12 +4,7 @@ class ProductionsController < ApplicationController
 
   # GET /productions or /productions.json
   def index
-    if params[:order]
-      @order = params[:order]
-    else 
-      @order = :created_at
-    end
-    @productions = Production.order(@order).reverse_order.page(params[:page])
+    @productions = Production.order(:calibration_time).reverse_order.page(params[:page])
   end
 
   # GET /productions/1 or /productions/1.json
@@ -70,7 +65,10 @@ class ProductionsController < ApplicationController
 
     # Use callbacks to share common setup or constraints between actions.
     def set_production
-      @production = Production.find(params[:id])
+      #@production = Production.find(params[:id])
+      @production = Production.find_by_id(params[:identifier])
+      @production ||= Production.find_by_ref(params[:identifier])
+      raise ApplicationController::RoutingError.new('Not found') unless @production
     end
 
     # Only allow a list of trusted parameters through.

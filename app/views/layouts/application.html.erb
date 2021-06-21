@@ -21,7 +21,8 @@
 
   <body>
 
-    <% if controller.controller_name != "home" %>
+
+    <% if isRefShow %>
       <header>
       <%= render "layouts/navbar" %>
       <%= render "layouts/header" %>
@@ -29,6 +30,15 @@
     <% end %>
 
     <hr>    
+
+    <!-- 
+    <p>
+      CONTROLLER : <%= controller.controller_name %><br>
+      REF : <%= request.original_fullpath[1..request.original_fullpath.length-1] %><br>
+      REF : <%= request.original_fullpath.split("/")[1] %><br>
+      isRefShow : <%= isRefShow %>
+    </p>
+    -->
 
     <div class="container">
       <%= yield %>

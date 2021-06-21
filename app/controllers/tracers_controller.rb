@@ -3,7 +3,7 @@ class TracersController < ApplicationController
 
   # GET /tracers or /tracers.json
   def index
-    @tracers = Tracer.all
+    @tracers = Tracer.order(:name)
   end
 
   # GET /tracers/1 or /tracers/1.json

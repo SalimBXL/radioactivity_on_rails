@@ -4,6 +4,8 @@ Rails.application.routes.draw do
 
   resources :clients
   resources :tracers
-  resources :productions
+  resources :productions, param: :identifier
+
+  get '/:identifier', to: 'productions#show'
   
 end

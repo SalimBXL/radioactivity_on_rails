@@ -6,52 +6,41 @@
 </h1>
 
 
- 
-  <div class="table-responsive">
-    <table class="table table-dark table-hover">
-      <thead>
-        <tr>
-          
-          <th><a href="#" class="btn btn-dark text-white" role="button">Tracer</a></th>
-
-          <th>
-            <a href="<%= productions_path(order: :calibration_time) %>" 
-              class="btn <%= (@order == "calibration_time") ? "btn-secondary" : "btn-dark" %> text-white" 
-              role="button">
-              Calibration Time
-            </a>
-          </th>
-
-          <th><a href="#" class="btn btn-dark text-white" role="button">Measure</a></th>
-          
-          <th><a href="#" class="btn btn-dark text-white" role="button">Activity</a></th>
-
-          <th><a href="#" class="btn btn-dark text-white" role="button">Client</a></th>
-
-          <th><a href="#" class="btn btn-dark text-white" role="button">Ref</a></th>
-          
-          <th colspan="3" style="text-align: right;">
-            <% if @order != "created_at" %>
-              <a href="<%= productions_path(order: :created_at) %>" 
-                class="btn btn-secondary text-white" 
-                role="button">
-                X
-              </a>
-            <% end %>
-          </th>
-        </tr>
-      </thead>
-
-      <tbody>
-        <%= render @productions %>
-      </tbody>
-      
-    </table>
-  </div>
+<p>
+  <%= link_to 'New Production', new_production_path, class: "btn btn-light" %> 
+</p>
   
-  <%= paginate @productions %>
+<div class="table-responsive">
+  <table class="table table-dark table-hover">
+    <thead>
+      <tr>
+        
+        <th>Tracer</th>
+
+        <th>Calibration Time</th>
+
+        <th>Measure</th>
+        
+        <th>Activity</th>
+
+        <th>Client</th>
+
+        <th>Ref</th>
+        
+        
+      </tr>
+    </thead>
+
+    <tbody>
+      <%= render @productions %>
+    </tbody>
+    
+  </table>
+</div>
+  
+<%= paginate @productions %>
 
 <br>
-
-<%= link_to 'New Production', new_production_path, class: "btn btn-light" %>
-
+<p>
+  <%= link_to 'New Production', new_production_path, class: "btn btn-light" %> 
+</p>
