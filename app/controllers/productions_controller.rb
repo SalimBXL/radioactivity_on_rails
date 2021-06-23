@@ -9,6 +9,26 @@ class ProductionsController < ApplicationController
 
   # GET /productions/1 or /productions/1.json
   def show
+    #redirect_to root_path unless @production
+    respond_to do |format|
+      format.html {
+        redirect_to root_path unless @production
+      }
+      format.json {
+        unless @production
+          render json: { error: "Not found" }, status: :not_found
+        else
+          render json: {
+            ref: @production.ref,
+            tracer: @production.tracer.name,
+            calibration: "#{@production.calibration_value} #{@production.unit_to_string(@production.calibration_unit)}",
+            time: @production.calibration_time_for_json,
+            description: @production.description,
+            format: format.format.symbol
+          }
+        end
+      }
+    end
   end
 
   # GET /productions/new
@@ -68,7 +88,7 @@ class ProductionsController < ApplicationController
       #@production = Production.find(params[:id])
       @production = Production.find_by_id(params[:identifier])
       @production ||= Production.find_by_ref(params[:identifier])
-      raise ApplicationController::RoutingError.new('Not found') unless @production
+      #raise ActionController::RoutingError.new('Not found') unless @production
     end
 
     # Only allow a list of trusted parameters through.

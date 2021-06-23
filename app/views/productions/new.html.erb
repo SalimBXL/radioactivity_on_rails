@@ -1,7 +1,11 @@
 <div class="container">
-<h1>New Production</h1>
-
-<%= render 'form', production: @production %>
-
-<%= link_to 'Back', productions_path, class:"btn btn-light" %>
+    <div class="card shadow-lg">
+        <div class="card-body">
+            <h1 class="card-title">New Production</h1>
+            <div class="card-text">
+                <%= render 'form', production: @production %>
+            </div>
+            <%= link_to 'Back', productions_path, class:"btn btn-light shadow-lg" %>
+        </div>
+    </div>
 </div>

@@ -1,18 +1,23 @@
 <p id="notice"><%= notice %></p>
 
+<div class="card shadow-lg">
+  <div class="card-body">
+    <h3 class="card-title">
+      <span class="badge badge-<%= @tracer.color_to_string(@tracer.color) %>"><%= @tracer.name %></span>
+    </h3>
+    <div class="card-text">
+      <p>
+        <strong>Molecule:</strong>
+        <%= @tracer.molecule %>
+      </p>
+      <p>
+        <strong>Halflife:</strong>
+        <%= @tracer.halflife %>
+      </p>
+    </div>
+    <hr>
+    <%= link_to 'Edit', edit_tracer_path(@tracer), class: "btn btn-light shadow-lg" %>
+    <%= link_to 'Back', tracers_path, class: "btn btn-light shadow-lg" %>
+  </div>
+</div>
 
-<h3><span class="badge badge-info"><%= @tracer.name %></span></h3>
-
-
-<p>
-  <strong>Molecule:</strong>
-  <%= @tracer.molecule %>
-</p>
-
-<p>
-  <strong>Halflife:</strong>
-  <%= @tracer.halflife %>
-</p>
-
-<%= link_to 'Edit', edit_tracer_path(@tracer), class: "btn btn-light" %>
-<%= link_to 'Back', tracers_path, class: "btn btn-light" %>

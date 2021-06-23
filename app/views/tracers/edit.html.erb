@@ -1,6 +1,8 @@
-<h1>Editing Tracer</h1>
-
-<%= render 'form', tracer: @tracer %>
-
-<%= link_to 'Show', @tracer, class: "btn btn-light" %>
-<%= link_to 'Back', tracers_path, class: "btn btn-light" %>
+<div class="card shadow-lg">
+  <div class="card-body">
+    <h1 class="card-title">Editing Tracer</h1>
+    <div class="card-text"><%= render 'form', tracer: @tracer %></div>
+    <%= link_to 'Show', @tracer, class: "btn btn-light shadow-lg" %>
+    <%= link_to 'Back', tracers_path, class: "btn btn-light shadow-lg" %>
+  </div>
+</div>

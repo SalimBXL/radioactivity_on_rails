@@ -1,0 +1,27 @@
+<div class="col-md-4" >
+    <div class="card shadow-lg" >
+
+        <div class="card-header">
+            <div class="d-flex justify-content-center align-content-center align-items-center mb-3">
+                <h5><%= client.name %></h5>
+            </div>
+        </div>
+
+        <div class="card-body">
+            <% @tracers.each do |tracer| %>
+                <div class="d-flex">
+                    <div class="flex-fill">
+                        <span class="badge badge-<%= tracer.color_to_string(tracer.color) %>">
+                            <%= tracer.name %>
+                        </span>
+                    </div>
+                    <div class="flex-fill">
+                        <pre>Total      : <%= @stats[client.id][tracer.id] %> </pre>
+                    </div>
+                </div>
+                <hr>
+            <% end %>
+        </div>
+
+    </div>
+</div>

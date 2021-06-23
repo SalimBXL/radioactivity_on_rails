@@ -1,81 +1,74 @@
 <div class="container">
-
-  <p id="notice"><%= notice %></p>
-
-  
-  <h1 class="bg-primary text-white">
-    <strong>Ref:</strong> <%= @production.ref %>
-  </h1>
-
-  
-  
-  <!-- TRACER -->
-  <div class="row">
-    <div class="col-sm-2">Tracer : </div>
-
-    <div class="col-sm-1">
-      <span class="badge badge-<%= Tracer::COLORS.key(@production.tracer.color) %>">
-        <%= @production.tracer.name %>
+  <div class="card shadow-lg">
+    <div class="card-header bg-<%= @production.tracer.color_to_string(@production.tracer.color) %>">
+      <span class="btn btn-sm disabled btn-<%= @production.tracer.color_to_string(@production.tracer.color) %>">
+        <h1 class="card-title">
+          <%= "REF. #{@production.ref}".capitalize %>
+        </h1>
       </span>
     </div>
-    
-    <div class="col-sm-2">
-      <kbd>
-        <%= @production.calibration_value.truncate(3) %>
-        <%= @production.unit_to_string(@production.calibration_unit) %>
-      </kbd>
-    </div>
-    <div class="col-sm-2">
-      <small>(<%= @production.calibration_time_for_human %>)</small>
-    </div>
-  </div>
-
-  <hr>
-
-  <% if @production.calibration_time.to_date.today? %>
-    <!-- ACTIVITY -->
-    <div class="row">
-      <div class="col-sm-2">Activity : </div>
-      <div class="col-sm-1">
-        <code>
-          <%= (@production.porcent_activity * 100).truncate(2) %> %
-        </code>
+    <div class="card-body">
+        <div class="card-text">
+          <div class="row">
+            <div class="col-sm-2">Tracer : </div>
+            <div class="col-sm-1">
+              <span class="btn btn-sm disabled btn-<%= Tracer::COLORS.key(@production.tracer.color) %>">
+                <%= @production.tracer.name %>
+              </span>
+            </div>
+            <div class="col-sm-2">
+              <kbd>
+                <%= @production.calibration_value.truncate(3) %>
+                <%= @production.unit_to_string(@production.calibration_unit) %>
+              </kbd>
+            </div>
+            <div class="col-sm-2">
+              <small>(<%= @production.calibration_time_for_human %>)</small>
+            </div>
+          </div>
+          <hr>
+          <% if @production.calibration_time.to_date.today? %>
+            <div class="row">
+              <div class="col-sm-2">Activity : </div>
+              <div class="col-sm-1">
+                <code>
+                  <%= (@production.porcent_activity * 100).truncate(2) %> %
+                </code>
+              </div>
+              <div class="col-sm-2">
+                <kbd>
+                  <%= @production.computed_activity.truncate(3) %>
+                  <%= @production.unit_to_string(@production.calibration_unit) %>
+                </kbd>
+              </div>
+              <div class="col-sm-2"><small>(<%= @production.elapsed_time %> min)</small></div>
+            </div>
+            <hr>
+          <% end %>
+          <div class="row">
+            <div class="col-sm-2">Description :</div>
+            <div class="col-sm">
+              <blockquote class="font-italic">
+                <%= @production.description ? @production.description :  "" %>
+              </blockquote>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-2">Client :</div>
+            <div class="col-sm">
+              <blockquote class="font-italic">
+                <%= @production.client ? @production.client.name : "" %>
+              </blockquote>
+            </div>
+          </div>
+        </div>
+        <% if isRefShow %>
+          <hr>
+          <%= link_to 'Edit', edit_production_path(@production), class: "btn btn-light shadow-lg" %>
+          <%= link_to 'Back', productions_path, class:"btn btn-light shadow-lg" %>
+        <% end %>
       </div>
-      <div class="col-sm-2">
-        <kbd>
-          <%= @production.computed_activity.truncate(3) %>
-          <%= @production.unit_to_string(@production.calibration_unit) %>
-        </kbd>
-      </div>
-      <div class="col-sm-2"><small>(<%= @production.elapsed_time %> min)</small></div>
-    </div>
-
-    <hr>
-  <% end %>
-
-  <div class="row">
-    <div class="col-sm-2">Description :</div>
-    <div class="col-sm">
-      <blockquote class="font-italic">
-        <%= @production.description ? @production.description :  "" %>
-      </blockquote>
     </div>
   </div>
-
-  <div class="row">
-    <div class="col-sm-2">Client :</div>
-    <div class="col-sm">
-      <blockquote class="font-italic">
-        <%= @production.client ? @production.client.name : "" %>
-      </blockquote>
-    </div>
-  </div>
-
-
-  <% if isRefShow %>
-    <hr>
-    <%= link_to 'Edit', edit_production_path(@production), class: "btn btn-light" %>
-    <%= link_to 'Back', productions_path, class: "btn btn-light"%>
-  <% end %>
-
 </div>
+

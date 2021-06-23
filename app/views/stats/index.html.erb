@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<h1>
+  <%= image_tag("baseline_leaderboard_black_48dp.png", height: "64")%>
+  Statistics
+</h1>
+
+<% if @stats.length > 0 %>
+<div class="row">
+    <% @clients.each do |client| %>
+        <%= render "card", client: client %>
+    <% end %>
+</div>
+<% end %>

@@ -5,7 +5,7 @@
   Clients
 </h1>
 
-<table class="table table-dark table-hover">
+<table class="table table-dark table-hover shadow-lg">
   <thead>
     <tr>
       <th>Name</th>
@@ -17,7 +17,9 @@
     <% @clients.each do |client| %>
       <tr>
         <td><h5><%= client.name %></h5></td>
-        <td><%= link_to 'Show', client, class: "btn btn-light btn-sm" %></td>
+        <!--
+          <td><%= link_to 'Show', client, class: "btn btn-light btn-sm" %></td>
+        -->
         <td><%= link_to 'Edit', edit_client_path(client), class: "btn btn-light btn-sm" %></td>
         <td><%= link_to 'Destroy', client, class: "btn btn-light btn-sm", method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
@@ -27,4 +29,4 @@
 
 <br>
 
-<%= link_to 'New Client', new_client_path, class: "btn btn-light" %>
+<%= link_to 'New Client', new_client_path, class: "btn btn-light shadow-lg" %>

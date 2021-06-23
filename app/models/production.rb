@@ -40,6 +40,10 @@ class Production < ApplicationRecord
         "#{calibration_time.day<10 ? "0" : ""}#{calibration_time.day}/#{calibration_time.month<10 ? "0" : ""}#{calibration_time.month}/#{calibration_time.year} @ #{calibration_time.hour<10 ? "0" : ""}#{calibration_time.hour}:#{calibration_time.min<10 ? "0" : ""}#{calibration_time.min}"
     end
 
+    def calibration_time_for_json
+        "#{calibration_time.day<10 ? "0" : ""}#{calibration_time.day}/#{calibration_time.month<10 ? "0" : ""}#{calibration_time.month}/#{calibration_time.year} #{calibration_time.hour<10 ? "0" : ""}#{calibration_time.hour}:#{calibration_time.min<10 ? "0" : ""}#{calibration_time.min}"
+    end
+
     def time_for_human(t)
         "#{t.day<10 ? "0" : ""}#{t.day}/#{t.month<10 ? "0" : ""}#{t.month}/#{t.year} @ #{t.hour<10 ? "0" : ""}#{t.hour}:#{t.min<10 ? "0" : ""}#{t.min}"
     end
