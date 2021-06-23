@@ -10,33 +10,32 @@
   <%= link_to 'New Production', new_production_path, class: "btn btn-light shadow-lg" %> 
 </p>
   
-<div class="table-responsive shadow-lg">
-  <table class="table table-dark table-hover">
-    <thead>
-      <tr>
-        
-        <th>Tracer</th>
 
-        <th>Calibration Time</th>
+<table class="table table-dark table-hover shadow-lg">
+  <thead>
+    <tr>
+      
+      <th>Tracer</th>
 
-        <th>Measure</th>
-        
-        <th>Activity</th>
+      <th>Calibration Time</th>
 
-        <th>Client</th>
+      <th>Measure</th>
+      
+      <th>Activity</th>
 
-        <th>Ref</th>
-        
-        
-      </tr>
-    </thead>
+      <th>Client</th>
 
-    <tbody>
-      <%= render @productions %>
-    </tbody>
-    
-  </table>
-</div>
+      <th>Ref</th>
+      
+      
+    </tr>
+  </thead>
+
+  <tbody>
+    <%= render @productions %>
+  </tbody>
+  
+</table>
   
 <%= paginate @productions %>
 
