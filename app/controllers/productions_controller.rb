@@ -20,7 +20,7 @@ class ProductionsController < ApplicationController
         else
           render json: {
             ref: @production.ref,
-            tracer: @production.tracer.name,
+            tracer: @production.tracer.molecule,
             calibration: "#{@production.calibration_value} #{@production.unit_to_string(@production.calibration_unit)}",
             time: @production.calibration_time_for_json,
             description: @production.description,
