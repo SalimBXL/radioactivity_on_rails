@@ -3,20 +3,22 @@
 
         <div class="card-header">
             <div class="d-flex justify-content-center align-content-center align-items-center mb-3">
-                <h5><%= client.name %></h5>
+                <h5>
+                    <%= client_name %> <small>(Total : <%= @productions[client_id][:total] %>)</small>
+                </h5>
             </div>
         </div>
 
         <div class="card-body">
-            <% @tracers.each do |tracer| %>
+            <% @tracers.keys.each do |id| %>
                 <div class="d-flex">
                     <div class="flex-fill">
-                        <span class="badge badge-<%= tracer.color_to_string(tracer.color) %>">
-                            <%= tracer.name %>
+                        <span class="badge badge-<%= @tracers[id][:color] %>">
+                            <%= @tracers[id][:name] %>
                         </span>
                     </div>
                     <div class="flex-fill">
-                        <pre>Total      : <%= @stats[client.id][tracer.id] %> </pre>
+                        <pre>Total      : <%= @productions[client_id][id] %> </pre>
                     </div>
                 </div>
                 <hr>

@@ -5,10 +5,9 @@
   Statistics
 </h1>
 
-<% if @stats.length > 0 %>
+
 <div class="row">
-    <% @clients.each do |client| %>
-        <%= render "card", client: client %>
+    <% @clients.each do |id, name| %>
+        <%= render "card", client_id: id, client_name: name %><br>
     <% end %>
 </div>
-<% end %>
