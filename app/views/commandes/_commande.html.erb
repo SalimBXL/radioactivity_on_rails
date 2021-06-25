@@ -1,4 +1,6 @@
-<tr class="<%= "table-secondary text-dark" if commande.is_from_today? %>" >
+<tr class="
+        <%= "table-#{commande.get_status_color} #{commande.status != 4 ? "text-dark" : "text-white" }" %>
+    ">
 
     <td>
         <%= commande.date_for_human %>
@@ -26,6 +28,10 @@
     <td>
         <%= commande.activity.truncate(3) %>
         <%= @units[commande.activity_unit_id].first %>
+    </td>
+
+    <td>
+        <%= commande.status_to_string(commande.status) %>
     </td>
 
     

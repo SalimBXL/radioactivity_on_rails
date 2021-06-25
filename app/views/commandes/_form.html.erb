@@ -68,6 +68,21 @@
     <%= form.datetime_local_field :date %>
   </div>
 
+
+  <div class="field">
+      <%= form.label :status %>
+      <%= form.select :status, 
+          Commande::STATUS.map { |unit| [unit.first, unit.last] },
+          {
+            selected: form.object.status || Commande::STATUS.first,
+            disabled: "",
+            prompt: 'Please select status'
+          },
+          { }
+      %>
+    </div>
+
+
   
 
   <div class="actions">

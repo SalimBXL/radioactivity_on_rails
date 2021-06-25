@@ -65,6 +65,6 @@ class CommandesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def commande_params
-      params.require(:commande).permit(:tracer_id, :activity_unit_id, :activity, :date, :client_id)
+      params.require(:commande).permit(:tracer_id, :activity_unit_id, :activity, :date, :client_id, :status)
     end
 end
