@@ -93,6 +93,6 @@ class ProductionsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def production_params
-      params.require(:production).permit(:ref, :tracer_id, :client_id, :calibration_time, :calibration_value, :calibration_unit, :description)
+      params.require(:production).permit(:ref, :tracer_id, :client_id, :calibration_time, :calibration_value, :second_measure, :calibration_unit, :description)
     end
 end

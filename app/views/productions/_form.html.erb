@@ -17,6 +17,20 @@
   </div>
 
   <div class="field">
+    <%= form.label :client %>
+    <% @clients = Client.order(:name) %>
+    <%= form.select :client_id, 
+        @clients.map { |client| [client.name, client.id] },
+        {
+          selected: form.object.client_id || @clients.find(1).id,
+          disabled: "",
+          prompt: 'Please select client'
+        },
+        { }
+    %>
+  </div>
+
+  <div class="field">
     <%= form.label :tracer %>
     <% @tracers = Tracer.order(:name) %>
     <%= form.select :tracer_id, 
@@ -30,10 +44,19 @@
     %>
   </div>
 
-  <div class="field">
-    <%= form.label :calibration_value %>
-    <%= form.text_field :calibration_value %>
+  <div class="container">
+    <div class="row">
+    <div class="field">
+      <%= form.label "Activity " %>
+      <%= form.text_field :calibration_value %>
+    </div>
+    <div class="field">
+      <%= form.label "Activity at one meter far" %>
+      <%= form.text_field :second_measure %>
+    </div>
+    </div>
   </div>
+  
 
   <div class="field">
     <%= form.label :calibration_unit %>
@@ -46,9 +69,8 @@
         },
         { }
     %>
-
   </div>
-
+    
   <div class="field">
     <%= form.label :calibration_time %>
     <%= form.datetime_local_field :calibration_time %>
@@ -57,20 +79,6 @@
   <div class="field">
     <%= form.label :description %>
     <%= form.text_field :description %>
-  </div>
-
-  <div class="field">
-    <%= form.label :client %>
-    <% @clients = Client.order(:name) %>
-    <%= form.select :client_id, 
-        @clients.map { |client| [client.name, client.id] },
-        {
-          selected: form.object.client_id || @clients.find(1).id,
-          disabled: "",
-          prompt: 'Please select client'
-        },
-        { }
-    %>
   </div>
 
   <div class="actions">

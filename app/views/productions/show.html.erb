@@ -9,6 +9,8 @@
     </div>
     <div class="card-body">
         <div class="card-text">
+
+          <!-- TRACER -->
           <div class="row">
             <div class="col-sm-2">Tracer : </div>
             <div class="col-sm-1">
@@ -17,15 +19,30 @@
               </span>
             </div>
             <div class="col-sm-2">
-              <kbd>
-                <%= @production.calibration_value.truncate(3) %>
-                <%= @production.unit_to_string(@production.calibration_unit) %>
-              </kbd>
+              <p>
+                <kbd>
+                  <%= @production.calibration_value.truncate(3) %>
+                  <%= @production.unit_to_string(@production.calibration_unit) %>
+                </kbd>
+              </p>
+              
+            </div>
+            <div class="col-sm-2">  
+              <p>
+                <small>(<%= @production.calibration_time_for_human %>)</small>
+              </p>
             </div>
             <div class="col-sm-2">
-              <small>(<%= @production.calibration_time_for_human %>)</small>
+              <% unless @production.second_measure.nil? %>
+                <small>
+                <%= @production.second_measure.truncate(3) %>
+                <%= @production.unit_to_string(@production.calibration_unit) %>
+                </small>
+                <small>(at one meter far)</small>
+              <% end %>
             </div>
           </div>
+
           <hr>
           <% if @production.calibration_time.to_date.today? %>
             <div class="row">
@@ -41,7 +58,7 @@
                   <%= @production.unit_to_string(@production.calibration_unit) %>
                 </kbd>
               </div>
-              <div class="col-sm-2"><small>(<%= @production.elapsed_time %> min)</small></div>
+              <div class="col-sm-2"><small>(<%= @production.elapsed_time %> minutes ago)</small></div>
             </div>
             <hr>
           <% end %>
