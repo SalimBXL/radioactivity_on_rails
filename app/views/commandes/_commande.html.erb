@@ -1,0 +1,38 @@
+<tr class="<%= "table-secondary text-dark" if commande.is_from_today? %>" >
+
+    <td>
+        <%= commande.date_for_human %>
+    </td>
+
+
+    <td>
+        <h6>
+            <span class="badge badge-secondary">
+                <%= commande.client.name %>
+            </span>
+        </h6>
+    </td>
+
+
+    <td>
+        <h6>
+            <span class="badge badge-<%= Tracer::COLORS.key(commande.tracer.color) %>">
+                <%= commande.tracer.name %>
+            </span>
+        </h6>
+    </td>
+    
+
+    <td>
+        <%= commande.activity.truncate(3) %>
+        <%= @units[commande.activity_unit_id].first %>
+    </td>
+
+    
+    <td><%= link_to 'Show', commande, class: "btn btn-light btn-sm" %></td>
+    
+    <td><%= link_to 'Edit', edit_commande_path(commande), class: "btn btn-light btn-sm" %></td>
+    
+    <td><%= link_to 'Destroy', commande, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-light btn-sm" %></td>
+
+</tr>

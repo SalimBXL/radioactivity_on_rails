@@ -1,0 +1,78 @@
+<%= form_with(model: commande) do |form| %>
+  <% if commande.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(commande.errors.count, "error") %> prohibited this commande from being saved:</h2>
+
+      <ul>
+        <% commande.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  
+
+  <div class="field">
+    <%= form.label :client %>
+    <% @clients = Client.order(:name) %>
+    <%= form.select :client_id, 
+        @clients.map { |client| [client.name, client.id] },
+        {
+          selected: form.object.client_id || @clients.find(1).id,
+          disabled: "",
+          prompt: 'Please select client'
+        },
+        { }
+    %>
+  </div>
+
+  <div class="field">
+    <%= form.label :tracer %>
+    <% @tracers = Tracer.order(:name) %>
+    <%= form.select :tracer_id, 
+        @tracers.map { |tracer| [tracer.name, tracer.id] },
+        {
+          selected: form.object.tracer_id || @tracers.first.id,
+          disabled: "",
+          prompt: 'Please select tracer'
+        },
+        { }
+    %>
+  </div>
+
+  
+  
+    <div class="field">
+      <%= form.label "Activity " %>
+      <%= form.text_field :activity %>
+    </div>
+    
+
+    <div class="field">
+      <%= form.label :activity_unit_id %>
+      <%= form.select :activity_unit_id, 
+          Production::UNITS.map { |unit| [unit.first, unit.last] },
+          {
+            selected: form.object.activity_unit_id || Production::UNITS.first,
+            disabled: "",
+            prompt: 'Please select unit'
+          },
+          { }
+      %>
+    </div>
+    
+    
+  <div class="field">
+    <%= form.label :date %>
+    <%= form.datetime_local_field :date %>
+  </div>
+
+  
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+
+<hr>

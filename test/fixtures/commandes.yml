@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  tracer_id: 1
+  activity: 1.5
+  date: 2021-06-25 09:42:09
+  client_id: 1
+
+two:
+  tracer_id: 1
+  activity: 1.5
+  date: 2021-06-25 09:42:09
+  client_id: 1
